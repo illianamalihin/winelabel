@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Liatiko Rose - Wine-Elabels.eu</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2em;
-    }
+<meta charset="UTF-8" />
+<title>Liatiko Rose - Wine-Elabels.eu</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 2em;
+  }
 
-    header,
-    main {
-      max-width: 800px;
-      margin: auto;
+  header, main {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  select {
+    margin-bottom: 1em;
+    font-size: 1rem;
+    padding: 0.3em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+  }
+
+  th, td {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      margin: 1em;
+      font-size: 0.95rem;
     }
 
     select {
-      margin-bottom: 1em;
-      font-size: 1rem;
-      padding: 0.3em;
+      width: 100%;
+    }
+
+    h1, h2 {
+      font-size: 1.2em;
+      text-align: center;
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
-      overflow-x: auto;
       display: block;
+      overflow-x: auto;
+      white-space: nowrap;
     }
-
-    th,
-    td {
-      padding: 0.5em;
-      border: 1px solid #ccc;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        margin: 1em;
-        font-size: 0.95rem;
-      }
-
-      select {
-        width: 100%;
-      }
-
-      h1,
-      h2 {
-        font-size: 1.2em;
-        text-align: center;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 <header>
@@ -108,7 +108,7 @@ const nutritionValues = {
 const translations = {
   en: {
     "nutrition-title": "NUTRITION DECLARATION",
-    "nutrition-header": "Average Nutritional Values per 100 ml Serving Size",
+    "nutrition-header": "Average Nutritional Values per 100 ml Serving Size",
     "energy-label": "ENERGY",
     "fat-label": "FAT",
     "saturates-label": "OF WHICH SATURATES",
@@ -151,8 +151,8 @@ const translations = {
     "salt-label": "SALE"
   },
   el: {
-    "nutrition-title": "ΔΙΑΤΡΟΦΙΚΗ ΔΗΛΩΣΗ",
-    "nutrition-header": "Μέση Διατροφική Αξία ανά 100 ml",
+    "nutrition-title": "ΔΗΛΩΣΗ ΔΙΑΤΡΟΦΙΚΩΝ ΣΤΟΙΧΕΙΩΝ",
+    "nutrition-header": "Μέσες Διατροφικές Αξίες ανά 100 ml",
     "energy-label": "ΕΝΕΡΓΕΙΑ",
     "fat-label": "ΛΙΠΑΡΑ",
     "saturates-label": "ΕΚ ΤΩΝ ΟΠΟΙΩΝ ΚΟΡΕΣΜΕΝΑ",
