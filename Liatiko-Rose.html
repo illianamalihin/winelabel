@@ -1,69 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Liatiko Rose</title>
+  <meta charset="UTF-8">
+  <title>Liatiko Rose - Wine-Elabels.eu</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 2em;
     }
-
+    header, main {
+      max-width: 800px;
+      margin: auto;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 1em;
     }
-
     th, td {
-      border: 1px solid #ccc;
       padding: 0.5em;
-      text-align: left;
+      border: 1px solid #ccc;
     }
-
-    @media (max-width: 600px) {
-      table thead {
-        display: none;
-      }
-
-      table, tbody, tr, td {
-        display: block;
-        width: 100%;
-      }
-
-      tr {
-        margin-bottom: 1em;
-      }
-
-      td {
-        padding-left: 50%;
-        position: relative;
-      }
-
-      td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0.5em;
-        top: 0.5em;
-        font-weight: bold;
-        white-space: nowrap;
-      }
+    select {
+      margin-bottom: 1em;
+      padding: 0.3em;
     }
   </style>
 </head>
 <body>
-  <h1>Liatiko Rose</h1>
-  <h2>Nutrition Facts (per 100ml)</h2>
-  <table>
-    <tbody>
-      <tr><td data-label="Energy">339 kJ / 81 kcal</td></tr>
-      <tr><td data-label="Fat">0 g</td></tr>
-      <tr><td data-label="of which Saturates">0 g</td></tr>
-      <tr><td data-label="Carbohydrates">1.8 g</td></tr>
-      <tr><td data-label="of which Sugars">0.15 g</td></tr>
-      <tr><td data-label="Protein">0.02 g</td></tr>
-      <tr><td data-label="Salt">0.01 g</td></tr>
-    </tbody>
-  </table>
+  <header>
+    <!-- Language Selector -->
+    <label for="language-select">Language:</label>
+    <select id="language-select" name="language">
+      <option value="/en/01/56529718617069/" selected>English</option>
+      <option value="/fr/01/56529718617069/">Français</option>
+      <option value="/de/01/56529718617069/">Deutsch</option>
+      <option value="/it/01/56529718617069/">Italiano</option>
+      <option value="/el/01/56529718617069/">Ελληνικά</option>
+      <option value="/es/01/56529718617069/">Español</option>
+      <option value="/nl/01/56529718617069/">Nederlands</option>
+    </select>
+
+    <h1>Iliana Malihin winery</h1>
+  </header>
+
+  <main>
+    <h2>Liatiko Rose</h2>
+
+    <section>
+      <h2>NUTRITION DECLARATION</h2>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Average Nutritional Values per 100 ml Serving Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>ENERGY</td><td>339 kJ / 81 kcal</td></tr>
+          <tr><td>FAT</td><td>0 g</td></tr>
+          <tr><td>OF WHICH SATURATES</td><td>0 g</td></tr>
+          <tr><td>CARBOHYDRATES</td><td>1.8 g</td></tr>
+          <tr><td>OF WHICH SUGARS</td><td>0.15 g</td></tr>
+          <tr><td>PROTEIN</td><td>0.02 g</td></tr>
+          <tr><td>SALT</td><td>0.01 g</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 </body>
 </html>
- 
