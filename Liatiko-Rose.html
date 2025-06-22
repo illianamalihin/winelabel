@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Liatiko Rose - Wine-Elabels.eu</title>
-<style>
-  body {
-    font-family: sans-serif;
-    margin: 2em;
-  }
-  header, main {
-    max-width: 800px;
-    margin: auto;
-  }
-  select {
-    margin-bottom: 1em;
-    font-size: 1rem;
-    padding: 0.3em;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1em;
-  }
-  th, td {
-    padding: 0.5em;
-    border: 1px solid #ccc;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liatiko Rose - Wine-Elabels.eu</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+    }
+    header, main {
+      max-width: 800px;
+      margin: auto;
+    }
+    select {
+      margin-bottom: 1em;
+      font-size: 1rem;
+      padding: 0.3em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    th, td {
+      padding: 0.5em;
+      border: 1px solid #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 1em;
+      }
+      td {
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+      }
+      td::before {
+        position: absolute;
+        top: 0;
+        left: 0.5em;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+      }
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -43,7 +69,7 @@
 </header>
 
 <main>
-  <h2 id="wine-name"></h2>
+  <h2 id="wine-name">Liatiko Rose</h2>
 
   <section>
     <h2 id="nutrition-title">NUTRITION DECLARATION</h2>
@@ -54,30 +80,41 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td id="energy-label">ENERGY</td><td id="energy-value"></td></tr>
-        <tr><td id="fat-label">FAT</td><td id="fat-value"></td></tr>
-        <tr><td id="saturates-label">OF WHICH SATURATES</td><td id="saturates-value"></td></tr>
-        <tr><td id="carbohydrates-label">CARBOHYDRATES</td><td id="carbohydrates-value"></td></tr>
-        <tr><td id="sugars-label">OF WHICH SUGARS</td><td id="sugars-value"></td></tr>
-        <tr><td id="protein-label">PROTEIN</td><td id="protein-value"></td></tr>
-        <tr><td id="salt-label">SALT</td><td id="salt-value"></td></tr>
+        <tr>
+          <td id="energy-label" data-label="ENERGY">ENERGY</td>
+          <td id="energy-value">339 kJ / 81 kcal</td>
+        </tr>
+        <tr>
+          <td id="fat-label" data-label="FAT">FAT</td>
+          <td id="fat-value">0 g</td>
+        </tr>
+        <tr>
+          <td id="saturates-label" data-label="OF WHICH SATURATES">OF WHICH SATURATES</td>
+          <td id="saturates-value">0 g</td>
+        </tr>
+        <tr>
+          <td id="carbohydrates-label" data-label="CARBOHYDRATES">CARBOHYDRATES</td>
+          <td id="carbohydrates-value">1.8 g</td>
+        </tr>
+        <tr>
+          <td id="sugars-label" data-label="OF WHICH SUGARS">OF WHICH SUGARS</td>
+          <td id="sugars-value">0.15 g</td>
+        </tr>
+        <tr>
+          <td id="protein-label" data-label="PROTEIN">PROTEIN</td>
+          <td id="protein-value">0.02 g</td>
+        </tr>
+        <tr>
+          <td id="salt-label" data-label="SALT">SALT</td>
+          <td id="salt-value">0.01 g</td>
+        </tr>
       </tbody>
     </table>
   </section>
 </main>
 
 <script>
-const wineName = "Liatiko Rose"; // Άλλαζε χειροκίνητα εδώ
-
-const nutritionValues = {
-  energy: "339 kJ / 81 kcal",
-  fat: "0 g",
-  saturates: "0 g",
-  carbohydrates: "1.8 g",
-  sugars: "0.15 g",
-  protein: "0.02 g",
-  salt: "0.01 g"
-};
+const wineName = "Liatiko Rose";
 
 const translations = {
   en: {
@@ -159,28 +196,21 @@ const translations = {
   }
 };
 
-function updateNutritionValues() {
-  document.getElementById("energy-value").textContent = nutritionValues.energy;
-  document.getElementById("fat-value").textContent = nutritionValues.fat;
-  document.getElementById("saturates-value").textContent = nutritionValues.saturates;
-  document.getElementById("carbohydrates-value").textContent = nutritionValues.carbohydrates;
-  document.getElementById("sugars-value").textContent = nutritionValues.sugars;
-  document.getElementById("protein-value").textContent = nutritionValues.protein;
-  document.getElementById("salt-value").textContent = nutritionValues.salt;
-}
-
 document.getElementById('language-select').addEventListener('change', function() {
   const lang = this.value;
   const dict = translations[lang];
   for (const id in dict) {
     const el = document.getElementById(id);
-    if (el) el.textContent = dict[id];
+    if (el) {
+      el.textContent = dict[id];
+      if (el.hasAttribute("data-label")) {
+        el.setAttribute("data-label", dict[id]);
+      }
+    }
   }
   document.getElementById("wine-name").textContent = wineName;
-  updateNutritionValues();
 });
 
-// Αρχική ρύθμιση
 document.getElementById('language-select').dispatchEvent(new Event('change'));
 </script>
 </body>
