@@ -23,12 +23,11 @@
       max-width: 100%;
     }
 
+    /* Βασικό styling πίνακα */
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1em;
-      overflow-x: auto;
-      display: block;
     }
 
     th, td {
@@ -38,6 +37,13 @@
       word-break: break-word;
     }
 
+    /* Wrapper για responsive scroll σε μικρές οθόνες */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Responsive tweaks για κινητά */
     @media (max-width: 600px) {
       body {
         margin: 1em;
@@ -72,22 +78,24 @@
 
     <section>
       <h2 id="nutrition-title">NUTRITION DECLARATION</h2>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2" id="nutrition-header">Average Nutritional Values per 100 ml Serving Size</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td id="energy-label">ENERGY</td><td id="energy-value"></td></tr>
-          <tr><td id="fat-label">FAT</td><td id="fat-value"></td></tr>
-          <tr><td id="saturates-label">OF WHICH SATURATES</td><td id="saturates-value"></td></tr>
-          <tr><td id="carbohydrates-label">CARBOHYDRATES</td><td id="carbohydrates-value"></td></tr>
-          <tr><td id="sugars-label">OF WHICH SUGARS</td><td id="sugars-value"></td></tr>
-          <tr><td id="protein-label">PROTEIN</td><td id="protein-value"></td></tr>
-          <tr><td id="salt-label">SALT</td><td id="salt-value"></td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2" id="nutrition-header">Average Nutritional Values per 100 ml Serving Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td id="energy-label">ENERGY</td><td id="energy-value"></td></tr>
+            <tr><td id="fat-label">FAT</td><td id="fat-value"></td></tr>
+            <tr><td id="saturates-label">OF WHICH SATURATES</td><td id="saturates-value"></td></tr>
+            <tr><td id="carbohydrates-label">CARBOHYDRATES</td><td id="carbohydrates-value"></td></tr>
+            <tr><td id="sugars-label">OF WHICH SUGARS</td><td id="sugars-value"></td></tr>
+            <tr><td id="protein-label">PROTEIN</td><td id="protein-value"></td></tr>
+            <tr><td id="salt-label">SALT</td><td id="salt-value"></td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 
