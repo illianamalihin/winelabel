@@ -96,6 +96,16 @@
           </tbody>
         </table>
       </div>
+
+      <section id="ingredients-section" style="margin-top: 1.5em;">
+        <h2 id="ingredients-title">INGREDIENTS</h2>
+        <p id="ingredients-content">
+          Grapes<br/>
+          Preservatives / Antioxidants<br/>
+          Metabisulfite of Potassium (Ε 224)<br/>
+          Gases and packaging gases
+        </p>
+      </section>
     </section>
   </main>
 
@@ -103,13 +113,13 @@
     const wineName = "Liatiko Rose"; // Άλλαζε χειροκίνητα εδώ
 
     const nutritionValues = {
-      energy: "339 kJ / 81 kcal",
-      fat: "0 g",
-      saturates: "0 g",
-      carbohydrates: "0.3 g",
-      sugars: "0.3 g",
-      protein: "<0.02 g",
-      salt: "0.01 g"
+      energy: "339 Kj / 81 Kcal",
+      fat: "0 gr",
+      saturates: "0 gr",
+      carbohydrates: "0.3 gr",
+      sugars: "0.3 gr",
+      protein: "<0.02 gr",
+      salt: "0.01 gr"
     };
 
     const translations = {
@@ -122,7 +132,12 @@
         "carbohydrates-label": "CARBOHYDRATES",
         "sugars-label": "OF WHICH SUGARS",
         "protein-label": "PROTEIN",
-        "salt-label": "SALT"
+        "salt-label": "SALT",
+        "ingredients-title": "INGREDIENTS",
+        "ingredients-content": `Grapes<br/>
+Preservatives / Antioxidants<br/>
+Metabisulfite of Potassium (Ε 224)<br/>
+Gases and packaging gases`
       },
       fr: {
         "nutrition-title": "DÉCLARATION NUTRITIONNELLE",
@@ -133,7 +148,12 @@
         "carbohydrates-label": "GLUCIDES",
         "sugars-label": "DONT SUCRES",
         "protein-label": "PROTÉINES",
-        "salt-label": "SEL"
+        "salt-label": "SEL",
+        "ingredients-title": "INGRÉDIENTS",
+        "ingredients-content": `Raisins<br/>
+Conservateurs / Antioxydants<br/>
+Métabisulfite de potassium (E 224)<br/>
+Gaz et gaz d'emballage`
       },
       de: {
         "nutrition-title": "ERNÄHRUNGSERKLÄRUNG",
@@ -144,7 +164,12 @@
         "carbohydrates-label": "KOHLENHYDRATE",
         "sugars-label": "DAVON ZUCKER",
         "protein-label": "EIWEIß",
-        "salt-label": "SALZ"
+        "salt-label": "SALZ",
+        "ingredients-title": "ZUTATEN",
+        "ingredients-content": `Trauben<br/>
+Konservierungsmittel / Antioxidantien<br/>
+Kaliumdisulfit (E 224)<br/>
+Gase und Verpackungsgase`
       },
       it: {
         "nutrition-title": "DICHIARAZIONE NUTRIZIONALE",
@@ -155,7 +180,12 @@
         "carbohydrates-label": "CARBOIDRATI",
         "sugars-label": "DI CUI ZUCCHERI",
         "protein-label": "PROTEINE",
-        "salt-label": "SALE"
+        "salt-label": "SALE",
+        "ingredients-title": "INGREDIENTI",
+        "ingredients-content": `Uva<br/>
+Conservanti / Antiossidanti<br/>
+Metabisolfito di potassio (E 224)<br/>
+Gas e gas di confezionamento`
       },
       el: {
         "nutrition-title": "ΔΙΑΤΡΟΦΙΚΗ ΔΗΛΩΣΗ",
@@ -166,7 +196,12 @@
         "carbohydrates-label": "ΥΔΑΤΑΝΘΡΑΚΕΣ",
         "sugars-label": "ΕΚ ΤΩΝ ΟΠΟΙΩΝ ΖΑΧΑΡΕΣ",
         "protein-label": "ΠΡΩΤΕΪΝΕΣ",
-        "salt-label": "ΑΛΑΤΙ"
+        "salt-label": "ΑΛΑΤΙ",
+        "ingredients-title": "ΣΥΣΤΑΤΙΚΑ",
+        "ingredients-content": `Σταφύλια<br/>
+Συντηρητικά / Αντιοξειδωτικά<br/>
+Μη-θειώδες κάλιο (Ε 224)<br/>
+Αέρια και αέρια συσκευασίας`
       },
       es: {
         "nutrition-title": "DECLARACIÓN NUTRICIONAL",
@@ -177,7 +212,12 @@
         "carbohydrates-label": "CARBOHIDRATOS",
         "sugars-label": "DE LOS CUALES AZÚCARES",
         "protein-label": "PROTEÍNAS",
-        "salt-label": "SAL"
+        "salt-label": "SAL",
+        "ingredients-title": "INGREDIENTES",
+        "ingredients-content": `Uvas<br/>
+Conservantes / Antioxidantes<br/>
+Metabisulfito de potasio (E 224)<br/>
+Gases y gases de envasado`
       },
       nl: {
         "nutrition-title": "VOEDINGSWAARDES",
@@ -188,7 +228,12 @@
         "carbohydrates-label": "KOOLHYDRATEN",
         "sugars-label": "DAARVAN SUIKERS",
         "protein-label": "EIWITTEN",
-        "salt-label": "ZOUT"
+        "salt-label": "ZOUT",
+        "ingredients-title": "INGREDIËNTEN",
+        "ingredients-content": `Druiven<br/>
+Conserveermiddelen / Antioxidanten<br/>
+Kaliumdisulfiet (E 224)<br/>
+Gassen en verpakkingsgassen`
       }
     };
 
@@ -205,11 +250,21 @@
     document.getElementById('language-select').addEventListener('change', function () {
       const lang = this.value;
       const dict = translations[lang];
+
       for (const id in dict) {
+        // Προσπερνάμε το nutritionValues που είναι διαφορετικό αντικείμενο
+        if (id === "ingredients-content") continue; 
         const el = document.getElementById(id);
         if (el) el.textContent = dict[id];
       }
+
+      // Ενημέρωση περιεχομένου συστατικών που έχει <br/> - χειρισμός innerHTML
+      document.getElementById("ingredients-content").innerHTML = dict["ingredients-content"];
+
+      // Ενημέρωση ονόματος κρασιού
       document.getElementById("wine-name").textContent = wineName;
+
+      // Ενημέρωση τιμών διατροφικών στοιχείων
       updateNutritionValues();
     });
 
@@ -218,4 +273,3 @@
   </script>
 </body>
 </html>
- 
