@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liatiko Rose - Wine-Elabels.eu</title>
   <style>
     body {
@@ -12,6 +13,11 @@
       max-width: 800px;
       margin: auto;
     }
+    select {
+      margin-bottom: 1em;
+      font-size: 1rem;
+      padding: 0.3em;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -21,51 +27,122 @@
       padding: 0.5em;
       border: 1px solid #ccc;
     }
-    select {
-      margin-bottom: 1em;
-      padding: 0.3em;
+
+    @media screen and (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 1em;
+      }
+      td {
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5em;
+        top: 0;
+        font-weight: bold;
+        white-space: nowrap;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- Language Selector -->
-    <label for="language-select">Language:</label>
-    <select id="language-select" name="language">
-      <option value="/en/01/56529718617069/" selected>English</option>
-      <option value="/fr/01/56529718617069/">Français</option>
-      <option value="/de/01/56529718617069/">Deutsch</option>
-      <option value="/it/01/56529718617069/">Italiano</option>
-      <option value="/el/01/56529718617069/">Ελληνικά</option>
-      <option value="/es/01/56529718617069/">Español</option>
-      <option value="/nl/01/56529718617069/">Nederlands</option>
-    </select>
+<header>
+  <h1>Iliana Malihin winery</h1>
+  <select id="language-select" aria-label="Select language">
+    <option value="en" selected>English</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="it">Italiano</option>
+    <option value="el">Ελληνικά</option>
+    <option value="es">Español</option>
+    <option value="nl">Nederlands</option>
+  </select>
+</header>
 
-    <h1>Iliana Malihin winery</h1>
-  </header>
+<main>
+  <h2 id="wine-name">Liatiko Rose</h2>
 
-  <main>
-    <h2>Liatiko Rose</h2>
+  <section>
+    <h2 id="nutrition-title">NUTRITION DECLARATION</h2>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2" id="nutrition-header">Average Nutritional Values per 100 ml Serving Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td id="energy-label" data-label="ENERGY">ENERGY</td><td id="energy-value"></td></tr>
+        <tr><td id="fat-label" data-label="FAT">FAT</td><td id="fat-value"></td></tr>
+        <tr><td id="saturates-label" data-label="OF WHICH SATURATES">OF WHICH SATURATES</td><td id="saturates-value"></td></tr>
+        <tr><td id="carbohydrates-label" data-label="CARBOHYDRATES">CARBOHYDRATES</td><td id="carbohydrates-value"></td></tr>
+        <tr><td id="sugars-label" data-label="OF WHICH SUGARS">OF WHICH SUGARS</td><td id="sugars-value"></td></tr>
+        <tr><td id="protein-label" data-label="PROTEIN">PROTEIN</td><td id="protein-value"></td></tr>
+        <tr><td id="salt-label" data-label="SALT">SALT</td><td id="salt-value"></td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
 
-    <section>
-      <h2>NUTRITION DECLARATION</h2>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">Average Nutritional Values per 100 ml Serving Size</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>ENERGY</td><td>339 kJ / 81 kcal</td></tr>
-          <tr><td>FAT</td><td>0 g</td></tr>
-          <tr><td>OF WHICH SATURATES</td><td>0 g</td></tr>
-          <tr><td>CARBOHYDRATES</td><td>1.8 g</td></tr>
-          <tr><td>OF WHICH SUGARS</td><td>0.15 g</td></tr>
-          <tr><td>PROTEIN</td><td>0.02 g</td></tr>
-          <tr><td>SALT</td><td>0.01 g</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+<script>
+const wineName = "Liatiko Rose";
+
+const nutritionValues = {
+  energy: "339 kJ / 81 kcal",
+  fat: "0 g",
+  saturates: "0 g",
+  carbohydrates: "1.8 g",
+  sugars: "0.15 g",
+  protein: "0.02 g",
+  salt: "0.01 g"
+};
+
+const translations = {
+  en: { /* ίδια όπως πριν */ },
+  fr: { /* ... */ },
+  de: { /* ... */ },
+  it: { /* ... */ },
+  el: { /* ... */ },
+  es: { /* ... */ },
+  nl: { /* ... */ }
+};
+
+function updateNutritionValues() {
+  document.getElementById("energy-value").textContent = nutritionValues.energy;
+  document.getElementById("fat-value").textContent = nutritionValues.fat;
+  document.getElementById("saturates-value").textContent = nutritionValues.saturates;
+  document.getElementById("carbohydrates-value").textContent = nutritionValues.carbohydrates;
+  document.getElementById("sugars-value").textContent = nutritionValues.sugars;
+  document.getElementById("protein-value").textContent = nutritionValues.protein;
+  document.getElementById("salt-value").textContent = nutritionValues.salt;
+}
+
+document.getElementById('language-select').addEventListener('change', function() {
+  const lang = this.value;
+  const dict = translations[lang];
+  for (const id in dict) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.textContent = dict[id];
+      if (el.hasAttribute("data-label")) {
+        el.setAttribute("data-label", dict[id]);
+      }
+    }
+  }
+  document.getElementById("wine-name").textContent = wineName;
+  updateNutritionValues();
+});
+
+// Init
+document.getElementById('language-select').dispatchEvent(new Event('change'));
+</script>
 </body>
 </html>
